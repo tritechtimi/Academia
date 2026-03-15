@@ -13,6 +13,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <style>
+        /* ... (keep all existing styles) ... */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root[data-theme="light"] {
             --bg-primary: #f0f5fa;
@@ -508,10 +509,23 @@
         }
 
         function setResourcesContent(html) {
+            const contentDiv = document.getElementById('resourcesContent');
+            // Force display and add diagnostic styles
+            contentDiv.style.display = 'block';
+            contentDiv.style.border = '5px solid red';
+            contentDiv.style.padding = '10px';
+            contentDiv.style.backgroundColor = 'rgba(255,0,0,0.1)';
+            contentDiv.innerHTML = html;
+
+            // Force ancestors to be visible
+            let parent = contentDiv.parentElement;
+            while (parent) {
+                parent.style.display = 'block';
+                parent = parent.parentElement;
+            }
+
             document.getElementById('resourcesLoading').style.display = 'none';
             document.getElementById('resourcesEmpty').style.display = 'none';
-            document.getElementById('resourcesContent').style.display = 'block';
-            document.getElementById('resourcesContent').innerHTML = html;
         }
 
         function setClassesLoading(isLoading) {
